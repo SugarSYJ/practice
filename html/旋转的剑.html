@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>旋转的剑</title>
+        <style>
+            .box{width: 80px;height: 100px;margin: 200px auto;position:relative;transform-style:preserve-3d;perspective:5000px;animation:haha 3s linear infinite;}
+            .box .box1{width:80px;height: 100px;position:absolute;left:0;top:0;transition:all 3s;opacity:0.8;}
+            .box .box1_7{transform:translateZ(150px);}
+            .box .box1_2{transform:translateZ(-150px);}
+            .box .box1_3{transform:rotateY(-60deg) translateX(28px) translateZ(-150px);}
+            .box .box1_4{transform:rotateY(-120deg) translateX(28px) translateZ(150px);}
+            .box .box1_5{transform:rotateY(60deg) translateX(-28px) translateZ(150px);}
+            .box .box1_6{transform:rotateY(120deg) translateX(-28px) translateZ(-150px);}
+            .box:hover .box1{transform:rotateX(720deg) rotateY(720deg) rotateZ(720deg);}
+            .box1_1 div{background:red;}
+            .box1_2 div{background:green;}
+            .box1_3 div{background:blue;}
+            .box1_4 div{background:orange;}
+            .box1_5 div{background:yellow;}
+            .box1_6 div{background:purple;}
+            .box1_7 div{background:pink;}
+            .box1 .div1{width: 10px;height: 8px;margin: 0 auto;border-radius:4px 4px 0 0;}
+            .box1 .div2{width: 8px;height: 16px;margin: 0 auto;}
+            .box1 .div3{width: 20px;height: 6px;margin: 0 auto;border-radius:4px 4px 0 0;}
+            .box1 .div4{width: 8px;height: 60px;margin: 0 auto;}
+            .box1 .div5{width: 0;height: 0;border-left: 4px solid transparent;border-right: 4px solid transparent;margin: 0 auto;background:#fff;}
+            @keyframes haha{
+                0%{}
+                100%{transform:rotateY(360deg);
+            }
+        </style>
+    </head>
+    <body>
+        <div class="box">
+            <div class="box1 box1_1">
+                <div class="div1"></div>
+                <div class="div2"></div>
+                <div class="div3"></div>
+                <div class="div4"></div>
+                <div class="div5" style="border-top: 8px solid red;"></div>
+            </div>
+            <div class="box1 box1_2">
+                <div class="div1"></div>
+                <div class="div2"></div>
+                <div class="div3"></div>
+                <div class="div4"></div>
+                <div class="div5" style="border-top: 8px solid green;"></div>
+            </div>
+            <div class="box1 box1_3">
+                <div class="div1"></div>
+                <div class="div2"></div>
+                <div class="div3"></div>
+                <div class="div4"></div>
+                <div class="div5" style="border-top: 8px solid blue;"></div>
+            </div>
+            <div class="box1 box1_4">
+                <div class="div1"></div>
+                <div class="div2"></div>
+                <div class="div3"></div>
+                <div class="div4"></div>
+                <div class="div5" style="border-top: 8px solid orange;"></div>
+            </div>
+            <div class="box1 box1_5">
+                <div class="div1"></div>
+                <div class="div2"></div>
+                <div class="div3"></div>
+                <div class="div4"></div>
+                <div class="div5" style="border-top: 8px solid yellow;"></div>
+            </div>
+            <div class="box1 box1_6">
+                <div class="div1"></div>
+                <div class="div2"></div>
+                <div class="div3"></div>
+                <div class="div4"></div>
+                <div class="div5" style="border-top: 8px solid purple;"></div>
+            </div>
+            <div class="box1 box1_7">
+                <div class="div1"></div>
+                <div class="div2"></div>
+                <div class="div3"></div>
+                <div class="div4"></div>
+                <div class="div5" style="border-top: 8px solid pink;"></div>
+            </div>
+            
+        </div>
+    </body>
+</html>

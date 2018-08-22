@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>小小钟</title>
+        <style>
+            #myCanvas{display:block;margin: 0 auto;}
+        </style>
+    </head>
+    <body>
+        <canvas id="myCanvas" width="300" height="300"></canvas>
+
+        <script>
+            var can = document.getElementById('myCanvas'),
+                width = can.width,
+                height = can.height,
+                ctx = can.getContext('2d'),
+                r = width/2,
+                now_point = 0;
+            ctx.translate(r,r);
+            //圆
+            function circle(){
+                ctx.save();//保存当前状态
+                ctx.beginPath();//开始路径绘制
+                ctx.arc(0,0,r-4,0,Math.PI*2,true);//圆心坐标，半径，起始角度和终止角度,逆时针画（true）顺时针画（false）
+                ctx.lineWidth = 2.0;// 设置线宽
+                ctx.strokeStyle = "#ccc";// 设置线的颜色
+                ctx.restore(); //恢复到刚才保存的状态
+                ctx.stroke();// 进行线的着色，这时整条线才变得可见
+                ctx.closePath();//闭合路径
+                point();
+                number();
+            };
+            //60个点
+            function point(){
+                for(var i=0;i<60;i++){
+                    var rad = Math.PI * 2/60 * (i+1),//每个点的角度
+                        x = (r-14) * Math.sin(rad),//x轴的坐标
+                        y = -(r-14) * Math.cos(rad);//y轴的坐标
+                    ctx.save();
+                    ctx.beginPath();
+                    if((i+1)%5 != 0){
+                        ctx.arc(x,y,2,0,Math.PI*2,true);
+                    }
+                    if(i+1 == now_point){
+                        ctx.save();
+                        ctx.fillStyle = "#f90";// 设置填充颜色
+                        ctx.fill();//实心
+                        ctx.restore();
+                    }else{
+                        ctx.save();
+                        ctx.fillStyle = "#ccc";
+                        ctx.fill();
+                        ctx.restore();
+                    }
+                }
+            };
+            //数字
+            function number(){
+                var arr = ['1','2','3','4','5','6','7','8','9','10','11','12'];
+                arr.forEach(function(number,i){
+                    ctx.save();
+                    ctx.font = '12px Times New Roman';//设置字体和字体大小
+                    ctx.textAlign = 'center'; //start, end, left, right or center
+                    ctx.textBaseline = 'middle' //top, hanging, middle, alphabetic, ideographic, bottom
+                    var rad = Math.PI * 2/12 * (i+1),
+                        x = (r-14) * Math.sin(rad),
+                        y = -(r-14) * Math.cos(rad);
+                    ctx.strokeText(number, x, y);// 设置字体内容，以及在画布上的位置
+                    ctx.restore();
+                })
+            };
+            //秒
+            function second(sec){
+                common1();
+                var rad = Math.PI * 2/60 * sec;
+                ctx.rotate(rad);
+                ctx.lineWidth = 1.0;
+                ctx.strokeStyle = 'red'; // 设置线的颜色
+                ctx.moveTo(0,-16);//路径（线）的起点
+                ctx.lineTo(0,120);//线的终点
+                common2();
+            }
+            //分
+            function minute(min,sec){
+                common1();
+                var rad_min = Math.PI * 2/60 * min,
+                    rad_sec = Math.PI * 2/60 * sec/60;
+                ctx.rotate(rad_min + rad_sec);
+                ctx.lineWidth = 2.0;
+                ctx.strokeStyle = 'yellow';
+                ctx.moveTo(0,-12);
+                ctx.lineTo(0,100);
+                common2()
+            }
+            //时
+            function hours(hou,min){
+                common1();
+                var rad_hou = Math.PI * 2/12 * hou,
+                    rad_min = Math.PI * 2/12 * min/60;
+                ctx.rotate(rad_min + rad_hou);
+                ctx.lineWidth = 4.0;
+                ctx.strokeStyle = 'green';
+                ctx.moveTo(0,-8);
+                ctx.lineTo(0,70);
+                common2();
+            }
+            function common1(){
+                ctx.save();
+                ctx.beginPath();
+                ctx.rotate(180 * Math.PI/180);
+            }
+            function common2(){
+                ctx.stroke();// 进行线的着色，这时整条线才变得可见
+                ctx.restore();
+                ctx.closePath();
+            }
+            //当前时间
+            function now(){
+                ctx.clearRect(-r, -r, width, height);//清除某个矩形区域的内容。
+                var now_time = new Date(),//获取当前时间
+                    sec = now_time.getSeconds(),//秒
+                    min = now_time.getMinutes(),//分
+                    hou = now_time.getHours();//时
+                now_point = sec;
+                circle();
+                second(sec);
+                minute(min,sec);
+                hours(hou,min);
+                ctx.arc(0,0,4,0,Math.PI*2,true);
+                ctx.fillStyle = "blue";
+                ctx.fill();
+                ctx.restore();
+            }
+            setInterval(now, 1000);
+        </script>
+    </body>
+</html>

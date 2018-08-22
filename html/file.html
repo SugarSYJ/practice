@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <form>
+            
+            <input type="file" name="photos" id="photos" multiple>
+            <input type="button" value="submit" id="btn_submit">
+        </form>
+        <script>
+            window.onload = function(){
+                document.getElementById('btn_submit').onclick = function(){
+                    var myForm = new FormData();    // 创建一个空的FormData对象
+                    
+                    
+                    let files = document.querySelector('[type=file]').files;
+                    console.log(files)
+                    for(var i = 0; i < files.length; i++){
+                        myForm.append("photos", files[i]);                
+                    }                
+
+                    // var xhr = new XMLHttpRequest();
+                    // xhr.open("POST","mulUpload");
+                    // xhr.send(myForm);
+                }
+            }
+        </script>    
+
+        <!-- <input type="file" id="files" accept="image/jpeg,image/jpg,image/png">
+    　　<img src="blank.gif" id="preview">
+    　　<script>
+        　　var elem = document.getElementById('files');
+        　　var img = document.getElementById('preview');
+            elem.onchange = function(){
+            　　var files = elem.files,
+            　　reader = new FileReader();
+            　　if(files && files[0]){
+                　　reader.onload = function(ev){
+                　　    img.src = ev.target.result;
+                　　}
+            　　    reader.readAsDataURL(files[0]);
+            　　}
+        　　}
+    　　</script> -->
+    </body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Useful Function in WebTrends.js</title>
+        <script type="text/javascript">
+            var collection = {
+                // 1.
+                // check if a param is a function
+                // 判断某个对象是否是个函数
+                isFunction: function(param){
+                    return Object.prototype.toString.call(param) === "[object Function]";
+                },
+        
+                // 2 .
+                //  Useful when you want to convert key value pair objects 
+                //  {foo:'boo', goo:'foo'} to arrays like so [{foo:'boo'}, {goo:'foo'}]  
+                //  so you can use the array filter, foreach, indexOf methods...
+                //  将带有属性名，属性值得对象，转变为一个map型的key-value Pair 数组对象
+                objectToKVPArray: function (object) {
+                    var tmp = [];
+                    for (var key in object) {
+                        if (object.hasOwnProperty(key) && object[key] != "" &&
+                            object[key] != undefined &&
+                            (typeof object[key] != "function")){
+                            tmp.push({
+                                'key': key,
+                                'value': object[key]
+                            });
+                        }
+                    }
+                    return tmp;
+                },
+                
+                // 3 .
+                // Get Query Params and their values
+                //  解析URL， 将参数及其值，转换为map型数据结构的key-value Pair
+                getQryParams: function(query){
+                    var keyValuePairs = query.split(/[&?]/g);
+                    var params = {};
+                    try {
+                        for(var i = 0, n = keyValuePairs.length; i < n; i++){
+                            var m = keyValuePairs[i].match(/^([^=]+)(?:=([\s\S]*))?/);
+                            if(m && m[1]){ 
+                                var key = decodeURIComponent(m[1]);
+                                if (params[key]){
+                                    params[key] = [params[key]];
+                                    params[key].push(decodeURIComponent(m[2]));
+                                }else{
+                                    params[key] = decodeURIComponent(m[2]);
+                                }
+                            }
+                        }
+                    } catch (e) {
+                        document.write(e.toString());
+                    };
+                    return params;
+                },
+                
+
+                // 4 .
+                // Do Asynchronized Request
+                // 发送异步请求
+                loadJS: function (src, isasync, theCallback) {
+                    if (arguments.length < 2) 
+                        isasync = true;
+                    s = window.document.createElement("script");
+                    s.type = "text/javascript";
+                    s.async = isasync;
+                    s.src = src;
+                    s2 = window.document.getElementsByTagName("script")[0];
+                    s2.parentNode.insertBefore(s, s2);
+                },
+                
+                
+                // 5. Test apply 
+                // Use Apply
+                // apply的使用
+                applyIsFunction: function () {
+                    return this.isFunction.apply(this, arguments);
+                },
+            };
+            
+            
+            /**
+             * Test As Follows
+             */
+            //1.Test if the param is Function Type
+            function _TestIsFunction_func(){};
+            document.write("<font color='red'>1.Test isFunction:</font> <br/>");
+            document.write(collection.isFunction(_TestIsFunction_func));
+            document.write("<br/><br/>");
+            
+            
+            //2.Test if the map-object to key-value paire
+            document.write("<font color='red'>2. Test objectToKVPArray:</font><br/>");
+            var person = {
+                name : 'Jeremy',
+                age : '20',
+                nationality : 'China'
+            };
+            var arr_2 = collection.objectToKVPArray(person);
+            for (var i = 0; i < arr_2.length; i++) {
+                document.write("key: " + arr_2[i]['key'] + 
+                            ", value: " + arr_2[i]['value'] + "<br/>");
+            }
+            document.write("<br/>");
+            
+            
+            //3. Test query String Convert to map key-value structure
+            document.write("<font color='red'>3. Test query String Convert to map key-value structure:</font><br/>");
+            var queryStr_3 = "http://www.baidu.com/s?tn=baiduhome_pg&rsv_sug4=405&rsv_sug1=3&inputT=10028";
+            var keyValuePair_3 = collection.getQryParams(queryStr_3);
+            for(var key in keyValuePair_3)
+                document.write("key: " + key + ", value: " + keyValuePair_3[key] + "<br/>");
+            document.write("<br/>");
+            
+            
+            //4. Do Asynchronized Request
+            document.write("<font color='red'>4. Test Do Asychronized Request:</font><br/>");
+            var src_4 = "http://localhost:8080/MyWebProject/Test?command=GetOnePersonJsonData";
+            document.write("<input type='button' id='btn_4' value='send request'></input>");
+            document.getElementById("btn_4")
+                .addEventListener("click", function(){
+                    collection.loadJS(src_4, true);
+                }, true);
+            document.write("<br/><br/>");
+            
+            
+            // 5 . use Apply
+            document.write("<font color='red'>5. Test Apply , here I apply collection.isFunction</font><br/>");
+            function func_5(){};
+            document.write(collection.applyIsFunction(func_5));
+            document.write("<br/></br>");
+            
+        </script>
+    </head>
+    <body>
+        <!-- 网址 https://blog.csdn.net/anialy/article/details/8330873 -->
+    </body>
+</html>

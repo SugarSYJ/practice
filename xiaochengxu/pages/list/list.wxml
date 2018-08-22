@@ -1,0 +1,3 @@
+<view>
+  <navigator url="/pages/detail/detail?id={{item.id}}" class="item" wx:for="{{datasource}}">{{item.title}}</navigator>
+</view>

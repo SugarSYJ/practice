@@ -1,0 +1,4 @@
+/* pages/video/video.wxss */
+.haha{
+  display: none;
+}

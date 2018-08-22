@@ -1,0 +1,42 @@
+{
+  "name": "sugar",
+  "description": "A Vue.js project",
+  "version": "1.0.0",
+  "author": "",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot --host 192.168.137.81",
+    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "v-week-slider": "^1.1.0",
+    "vue": "^2.5.16",
+    "vue-router": "^3.0.1",
+    "vue-scroller": "^2.2.4",
+    "vuex": "^3.0.1"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ],
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-stage-3": "^6.24.1",
+    "cross-env": "^5.2.0",
+    "css-loader": "^0.28.11",
+    "file-loader": "^1.1.11",
+    "lazy-load-img": "^3.0.6",
+    "node-sass": "^4.9.2",
+    "sass-loader": "^6.0.7",
+    "vue-lazy-load-img": "0.0.3",
+    "vue-loader": "^13.7.2",
+    "vue-template-compiler": "^2.5.16",
+    "webpack": "^3.12.0",
+    "webpack-dev-server": "^2.11.2"
+  }
+}

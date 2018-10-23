@@ -1,6 +1,5 @@
 import Vue from 'vue';
-import HomeComponent from './components/home/home.vue';
-import HeadComponent from './components/home/header/header.vue';
+import HenusComponent from './components/menus/menus.vue';
 import store from './vuex/store.js';
 
 import router from './router/router';
@@ -16,5 +15,5 @@ new Vue({
     el:'#app',
     router,
     store,
-    render:h => h(HeadComponent)
+    render:h => h(HenusComponent)
 })

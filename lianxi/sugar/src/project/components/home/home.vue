@@ -1,10 +1,10 @@
 <template>
     <div class="home">
-        <div class="header">
+        <!--<div class="header">
             <dheader></dheader>
-        </div>
-        <!--<week-slider @dateClick="dateClickhandler" :showYear="true"></week-slider>
-        <vue-lazy-load-img 
+        </div>-->
+        <week-slider @dateClick="dateClickhandler" :showYear="true"></week-slider>
+        <!--<vue-lazy-load-img 
             mode="diy"
             :time="300"
             :done="true"

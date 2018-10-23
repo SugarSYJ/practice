@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <meta name="renderer" content="webkit"/>
+  <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+  <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Cache-Control" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <title>邀请有奖</title>
+  <link rel="stylesheet" type="text/css" href="./css/common.css?version=1009"/>
+  <link rel="stylesheet" type="text/css" href="./css/inviteReward.css?version=1009"/>
+</head>
+
+<body class="invite-reward">
+
+  <div class="mask">
+    <div class="popup">
+      <img src="./img/pop.png" alt="">
+      <p>点击右上角分或右下角的位置选择分享平台或好友进行分享</p>
+    </div> 
+  </div>
+
+  <div class="top-banner">
+    <img src="./img/invite-bg.png" alt="">
+  </div>
+  
+  <!--  号码上传页 -->
+  <div class="content-box first">
+    <div class="title">领取时长</div>
+    <input type="tel" 
+      placeholder="请输入手机号" 
+      maxlength="11" 
+      onkeyup="this.value=this.value.replace(/\D/g,'')"
+      class="number_input">
+    <div class="submit">立即领取300分钟</div>
+  </div>
+
+  <!--  老用户页 -->
+  <div class="content-box old">
+    <div class="title">您是密友圈老朋友</div>
+    <p class="msg">赶紧登录密友圈联系密友吧</p>
+    <div class="submit invite_new">立即邀请新用户</div>
+    <span>密友圈老用户在密友圈成功发起邀请新人任务，新人登录后完成指定任务，老用户可获得超长时长奖励。</span>
+  </div>
+
+  <!--  新用户页-->
+  <div class="content-box new">
+    <div class="title">恭喜您</div>
+    <p class="msg">获得密友圈新用户专享300分钟全国通话时长（当月有效）</p>
+    <div class="authCode-box">
+      <input type="tel" 
+        onkeyup="this.value=this.value.replace(/\D/g,'')"
+        maxlength="6" 
+        class="code_input">
+      <div class="get_code_btn">获取验证码</div>
+    </div>
+
+
+    <div class="new_submit">立即领取</div>
+  </div>
+
+
+  <!--  新用户二次页 -->
+  <div class="content-box new_second_box">
+    <div class="title">恭喜您</div>
+    <p class="msg">您已领取过该奖励请直接下载登录密友圈查看</p>
+    <div class="new_second">下载密友圈</div>
+  </div>
+
+  <div class="bottom-info">本活动最终解释权归密友圈所有</div>
+
+  <!-- 弹窗 -->
+  <div class="msg_box">
+    <p class="tip"></p>
+  </div>
+
+<script>
+  (function (doc, win) {// 动态修改root 的 font-size
+    var docEl = doc.documentElement,
+    resizeEvt = 'onorientationchange' in window ? 'onorientationchange' : 'resize',
+    recalc = function () {
+      var clientWidth = docEl.clientWidth;
+      if (!clientWidth) return;
+      if (clientWidth >= 750) {
+        docEl.style.fontSize = '100px';
+      } else {
+        docEl.style.fontSize = 100 * (clientWidth / 750) + 'px';
+      }
+    };
+    if (!doc.addEventListener) return;
+    win.addEventListener(resizeEvt, recalc, false);
+    doc.addEventListener('DOMContentLoaded', recalc, false);
+})(document, window);
+</script>
+<script src="./js/jquery-2.1.4.min.js"></script>
+<script src="./js/config.js"></script>
+<script src="./js/inviteReward.js"></script>
+</body>
+</html>

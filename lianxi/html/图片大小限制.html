@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <input id="tmpId" type="file" name="file" onchange="limitJpg('tmpId');">
+    </body>
+
+    <script type="text/javascript">
+        function limitJpg(fileId, imgId, urlId) {
+            var max_size = 300;// 300k
+            var tmpFile = document.getElementById(fileId);
+            if (tmpFile.value == '' || tmpFile.value == null) {
+                alert("请上传图片");
+                return false;
+            }
+            if (!/\.(gif|jpg|jpeg|png|GIF|JPG|PNG)$/.test(tmpFile.value)) {
+                alert("图片类型必须是[.gif,jpeg,jpg,png]中的一种");
+                tmpFile.value = "";
+                return false;
+            } else {
+                var fileData = tmpFile.files[0];
+                var size = fileData.size;
+                if (size > max_size * 1024) {
+                    alert("图片大小不能超过300k");
+                    tmpFile.value = "";
+                } else {
+                    console.log(fileData)
+                }
+            }
+        }
+    </script>
+</html>

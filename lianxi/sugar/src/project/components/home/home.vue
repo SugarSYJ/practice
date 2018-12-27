@@ -22,8 +22,9 @@
         <div id="group">
             <ul>
                 <li class= "list-item" data-type= "0" v-for= " (item,index) in data" :key="index">
-                    <div class="list-box"  @touchstart.stop.prevent="touchStart"  @touchend="touchEnd">
+                    <div class="list-box"  @touchstart="touchStart"  @touchend="touchEnd">
                         <div class="personnel">{{item.name}}</div>
+                        <span @click="use($event)">使用</span>
                     </div>
                     <div class="delete" @click="deletefunction(index,item)" :data-index='index'> 
                         删除
@@ -120,6 +121,60 @@
             cleartime(id) {
                 // 这个方法主要是用来将每次手指移出之后将计时器清零
                 clearInterval(this.Loop);
+            },
+            //点击复制
+            use(e) {
+                //定义函数
+                window.Clipboard = (function(window, document, navigator) {
+                    var textArea,copy;
+                    // 判断是不是ios端
+                    function isOS() {
+                        return navigator.userAgent.match(/ipad|iphone/i);
+                    }
+                    //创建文本元素
+                    function createTextArea(text) {
+                        textArea = document.createElement('textArea');
+                        textArea.value = text;
+                        document.body.appendChild(textArea);
+                    }
+                    //选择内容
+                    function selectText() {
+                        var range,selection;
+                        if (isOS()) {
+                            range = document.createRange();
+                            range.selectNodeContents(textArea);
+                            selection = window.getSelection();
+                            selection.removeAllRanges();
+                            selection.addRange(range);
+                            textArea.setSelectionRange(0, 999999);
+                        } else {
+                            textArea.select();
+                        }
+                    }
+                    //复制到剪贴板
+                    function copyToClipboard() {        
+                        try{
+                            if(document.execCommand("Copy")){
+                                alert("复制成功！");  
+                            }else{
+                                alert("复制失败！请手动复制！");
+                            }
+                        }catch(err){
+                            alert("复制错误！请手动复制！")
+                        }
+                        document.body.removeChild(textArea);
+                    }
+                    copy = function(text) {
+                        createTextArea(text);
+                        selectText();
+                        copyToClipboard();
+                    };
+                    return {
+                        copy: copy
+                    };
+                })(window, document, navigator);
+                var  val = e.target.previousElementSibling.innerText;;
+                Clipboard.copy(val);
             }
         }
     }

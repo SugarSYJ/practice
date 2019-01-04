@@ -9,6 +9,24 @@
         <a href="javascript:zh_tran('s');" class="zh_click" id="zh_click_s">简体</a> 
         <a href="javascript:zh_tran('t');" class="zh_click" id="zh_click_t">繁体</a>
         <div style="width:500px; margin:20px auto;">测试网页文字，繁简体转换 苏</div>
-        <div style="width:500px; margin:20px auto;"> 这里是测试代码，大家可以尝试一下看看！切换会变哦！ </div> 
+        <div style="width:500px; margin:20px auto;"> 这里是测试代码，大家可以尝试一下看看！切换会变哦！
+        一 安装相关的包
+npm i language-tw-loader
+1
+二 修改 webpack 配置文件
+在 build 文件夹下找到 webpack.base.conf.js 这个文件，在 module 的 rules 下面添加作者 README 中的代码
+
+module: {
+    rules: [
+      ......
+      //上面的省略，将下面的代码加入进来
+      {
+        test: /\.(js|vue)$/,
+        loader: 'language-tw-loader',
+      }
+    ]
+  },
+三 打包
+打包运行就可以看到效果了 </div> 
     </body> 
 </html>

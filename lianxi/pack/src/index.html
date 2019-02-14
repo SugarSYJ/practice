@@ -1,44 +1,176 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <link rel="stylesheet" type="text/css" href="./css/index.css" />
-        <title>哈哈</title>
-        <style>
-            *{
-                padding: 0;
-                margin: 0;
-            }
-            html,body{height:100%;margin: 0;background:#fff;}
-        </style>
-        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" id="vp"/>
-        <script type="text/javascript">
-            var wd = document.documentElement.clientWidth*window.devicePixelRatio/10;
-            document.getElementsByTagName("html")[0].style.fontSize = wd + "px";
-            var scale = 1/window.devicePixelRatio;
-            var mstr = 'initial-scale='+ scale +', maximum-scale='+ scale +', minimum-scale='+ scale +', user-scalable=no';
-            document.getElementById("vp").content = mstr;
-        </script>
-        <script type="text/javascript" src="./js/jquery.min.js"></script>
-        <script type="text/javascript" src="./js/firework.js"></script>
-        <script type="text/javascript" src="./js/index.js"></script>
-    </head>
-    <body>
-        <div id="example"></div>
-        <div id="first">
-            <div id="header">
-                <div class="head">我的第一个标题</div>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>意见反馈</title>
+    <link rel="stylesheet" href="./css/reset.css" />
+    <link rel="stylesheet" href="./css/hefeixinstyle.css" />
+    <link rel="stylesheet" href="./css/dialog.css" />
+    <link rel="stylesheet" href="./css/layer.css" />
+    <style>
+        .imgae-edit {
+            float: left;
+            width: 25%;
+            box-sizing: border-box;
+            padding-left: 5px;
+            padding-right: 5px;
+            height: 73px;
+            position: relative;
+        }
+        
+        .imgae-edit:nth-of-type(7) {
+            margin-top: 0;
+        }
+        
+        .imgae-edit .thumb {
+            height: 73px;
+            width: 100%;
+        }
+        
+        #fileBtn {
+            height: 73px;
+            width: 73px;
+            position: absolute;
+            opacity: 0;
+        }
+        
+        .imgae-edit .del {
+            position: absolute;
+            right: 8px;
+            top: 0;
+            z-index: 111;
+            right: 5px;
+            top: 0;
+        }
+        
+        .eximage {
+            width: 100%;
+            height: 73px;
+        }
+        
+        .del {
+            display: block;
+            /* color: #ffffff; */
+            height: 15px;
+            width: 15px;
+            line-height: 15px;
+            background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAoZJREFUSA3Fl71uGkEQx8eEL/EhoOEFXNLyCsQF6UNFSxFR0FPcM0SKn8Iv4CAhEJIbQDSILjWK0tBQWCk28z+8p/Xu7LF2TvJIf3lvmJ3fzd7c3vqGwqzAYXesz6wu65bVZMFOrF+sDesn65H1l/VfhuQR6w9LBQqxEUvfGA/fZl85/DcrFGjHYS5yBNsnjrxn2Ynee41cyJlqCHhgvRfim4ecqfAsK7VvArlFw/Owg7O+dp45OtBppHw+r8bjsZpOp6per1+9iVarpaIoUqPRSOVyOSkejFfdHknVAqptvV6rZrMpJYt97XZb7fd7Ha6Gw6EvFizKsbA5fMOFbY1GI3F1u12azWbE8MSnBwyl+XxOnU5Hu8icmzgvA7DApC8s8e6wvKjUNLtyu1LELhYLVS6XxZwvLDDpuw8MP5bXB/dBq9VqGhS/gUlPAKRJgu92O3U4HMzFiCsNgIIFptvN0k1IcJOK5Q2EAozupmcJJPkAR6W2rVart0ABfkZXB1uxWKRSqeTEVyoVKhTiRnV+S3M4GwcHO89caiSzcrvbpRyGL17qq80lQbG82+3WZMfdj8dhAHzjuLlSXycJqhtJarjAyuPXybuBYO81t0GUp6G6Kh+8Vqv5qoU/3kDQFTiuOIHY8E2zoXqOBJ9MJk6+l3iwCuhqHMx+sBw7Ho+Jb7lcUr/fp/P5nPj04HQ6Ua/Xo81mo11kzk2clwFYyWFQ/Czi04avDL5SV/beuDosLyodDAa+ap3PIu7lQw4Cl0XI9pBnV+09+gD+YYc9Dc/y0IdcqSdMQE3DMw/aTjnOXlZcY65zuGNfkKHbI5b4nrNfAiIWc9wzEju13ejBlb/YZDL9p+0fMRukVM0f3dcAAAAASUVORK5CYII=) no-repeat;
+            background-size: 15px;
+            /* border-radius: 5px; */
+            /* background: #000000; */
+        }
+        
+        .imagebox {
+            display: none;
+            box-sizing: border-box;
+            padding-left: 5px;
+            padding-right: 5px;
+            width: 25%;
+            height: 73px;
+            float: left;
+            position: relative;
+        }
+        
+        .dela2 {
+            display: block;
+            height: 15px;
+            width: 15px;
+            position: absolute;
+            background: url("./img/delete_normal@2x.png") no-repeat;
+            background-size: 15px;
+            top: 0;
+            right: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+        <div class="huanchongbox">
+            <i class="huanchongimage"></i>
+        </div>
+        <!-- <div class="loadadvise">
+            <a href="./Myadvise.html">查看意见反馈记录>></a>
+        </div> -->
+        <div class="content-title advise-title">
+            <span>你想反馈的意见类型</span>
+            <i></i>
+            <!-- <p>你想反馈的意见类型</p> -->
+        </div>
+        <div class="content">
+            <div class="content-item">
+                <div class="item-left">
+                    <i class="check-icon off icon1"></i>
+                </div>
+                <div class="item-right">
+                    <span>功能异常：功能障碍或者不可用</span>
+                </div>
             </div>
-            <div id="main">
-                <div class="div div1"></div>
-                <div class="div div2"></div>
-                <div class="div div3"></div>
-                <div class="div div4"></div>
-                <div class="div div5"></div>
+            <div class="content-item">
+                <div class="item-left">
+                    <i class="check-icon off icon2"></i>
+                </div>
+                <div class="item-right">
+                    <span>产品建议：体验不佳，我有建议</span>
+                </div>
             </div>
-            <div id="footer">
-                点我
+            <div class="content-item">
+                <div class="item-left">
+                    <i class="check-icon off icon3"></i>
+                </div>
+                <div class="item-right">
+                    <span>其他问题</span>
+                </div>
             </div>
         </div>
-    </body>
+        <div class="content-title">
+            <p>请补充详细问题和意见</p>
+        </div>
+        <div class="content" id="textarea-content">
+            <textarea class="feedback-desc" name="" id="" cols="30" rows="10" placeholder="建议输入10个字以上的描述" oninput="restriction()"></textarea>
+            <div class="count_1"><span class="count1_son">240</span><span>/240</span></div>
+        </div>
+        <div class="img-content">
+            <div class="img-content-title">
+                <span class="title">请提供相关问题的截图或照片</span>
+                <span class="count2">4</span>
+                <span class="count">0/</span>
+
+            </div>
+
+            <div class="img-wrapper">
+                <!-- <div class="_filelist file-list"></div> -->
+                <div class="img-item" style="position:relative">
+                    <div class="img-add-icon" id="choose_file">
+                        <input type="file" id="fileBtn" accept="image/jpg,image/jpeg,image/png" style="display: block;" />
+                        <span class="iconadd"></span>
+                        <span class="boxradius">
+                            <i class="boxradius_son"></i>
+                        </span>
+                    </div>
+                    <div class="add-desc" >
+                        <span>相册/相机</span>
+                    </div>
+                    <div class="tips" onclick="tips()" style="position:absolute; top:0; left:0; right:0; width:100%; height:100%;"></div>
+                </div>
+            </div>
+        </div>
+        <div class="btn-wrapper">
+            <i class="btn">提交</i>
+        </div>
+        <!-- <div class="adviseMian">
+            <div>
+                <span>若你的问题急需解决，可致电</span>
+                <span class="phone">10086</span>
+            </div>
+        </div> -->
+    </div>
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/dialog.js"></script>
+    <script src="./js/layer.js"></script>
+    <script src="./js/hefeixin.js"></script>
+</body>
+
 </html>

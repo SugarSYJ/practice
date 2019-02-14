@@ -1,5 +1,6 @@
 {
-  "firework.min.js": "firework-f93ba2c60e.min.js",
-  "index.min.js": "index-130af6afc3.min.js",
-  "jquery.min.min.js": "jquery-0409d0edd4.min.min.js"
+  "dialog.min.js": "dialog-e663bfbd53.min.js",
+  "hefeixin.min.js": "hefeixin-283474d354.min.js",
+  "jquery.min.min.js": "jquery-39bd073f99.min.min.js",
+  "layer.min.js": "layer-80654f333c.min.js"
 }
